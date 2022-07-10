@@ -14,7 +14,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"; \
 RUN apk add git curl zip unzip wget \
   oniguruma-dev zlib-dev libpng-dev libzip-dev \
   mysql-client \
-  nodejs npm
+  nodejs npm openssh
+
+RUN npm i -g yarn
 
 # PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath
