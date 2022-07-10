@@ -1,0 +1,32 @@
+version: '3'
+services:
+
+  mariadb:
+    image: 'mariadb:10.7-focal'
+    container_name: laravel_mariadb
+    ports:
+      - '${DB_PORT:-3306}:3306'
+    environment:
+      MARIADB_ROOT_PASSWORD: '${DB_PASSWORD:-password}'
+      MARIADB_DATABASE: '${DB_DATABASE}'
+      MARIADB_USER: '${DB_USERNAME}'
+      MARIADB_PASSWORD: '${DB_PASSWORD:-password}'
+    volumes:
+      - 'mariadb:/var/lib/mysql'
+
+  laravel:
+    image: laravel:8-php8.1
+    container_name: laravel_php
+    working_dir: /root/app
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - ./:/root/app
+      - ~/.ssh/:/root/.ssh/
+    depends_on:
+      - mariadb
+
+volumes:
+  mariadb:
+    driver: local
