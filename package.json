@@ -1,14 +1,24 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "dev": "mix",
+        "watch": "mix watch"
     },
     "devDependencies": {
+        "@babel/preset-react": "^7.18.6",
         "axios": "^0.25",
-        "laravel-vite-plugin": "^0.2.1",
+        "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "vite": "^2.9.11"
+        "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "@chakra-ui/react": "^2.2.3",
+        "@emotion/react": "^11.9.3",
+        "@emotion/styled": "^11.9.3",
+        "@inertiajs/inertia": "^0.11.0",
+        "@inertiajs/inertia-react": "^0.8.0",
+        "framer-motion": "^6.4.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
     }
 }
