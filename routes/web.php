@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,13 @@ Auth::routes();
 Route::controller(HomeController::class)->group(function(){
   Route::get('home', 'index')->name('home');
 });
+
+Route::resource('users', UserController::class)->names([
+  'index' => 'Users/Index',
+  'create' => 'Users/Create',
+  'store' => 'Users/Store',
+  'edit' => 'Users/Edit',
+  'update' => 'Users/Update',
+  'destroy' => 'Users/Destroy',
+  'show' => 'Users/Show'
+]);

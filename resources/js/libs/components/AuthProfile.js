@@ -7,7 +7,7 @@ const AccountIcon = chakra(AiOutlineUser);
 
 export default () => {
 
-  const { user, csrf } = usePage().props
+  const { auth:user, csrf } = usePage().props
 
   const { post } = useForm({
     _token: csrf
