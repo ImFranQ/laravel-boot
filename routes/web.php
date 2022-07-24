@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -33,4 +34,14 @@ Route::resource('users', UserController::class)->names([
   'update' => 'Users/Update',
   'destroy' => 'Users/Destroy',
   'show' => 'Users/Show'
+]);
+
+Route::resource('categories', CategoryController::class)->names([
+  'index' => 'Categories/Index',
+  'create' => 'Categories/Create',
+  'store' => 'Categories/Store',
+  'edit' => 'Categories/Edit',
+  'update' => 'Categories/Update',
+  'destroy' => 'Categories/Destroy',
+  'show' => 'Categories/Show'
 ]);

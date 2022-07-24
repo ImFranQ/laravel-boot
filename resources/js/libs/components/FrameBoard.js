@@ -2,15 +2,17 @@ import { Box, Flex, List, ListItem, chakra } from "@chakra-ui/react"
 import { Link, usePage } from "@inertiajs/inertia-react"
 import AuthProfile from "./AuthProfile"
 import Navbar from "./Navbar"
-import { AiOutlineHome } from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineTag } from 'react-icons/ai'
 import { FiUsers } from 'react-icons/fi'
 
 const HomeIcon = chakra(AiOutlineHome)
 const UsersIcon = chakra(FiUsers)
+const TagIcon = chakra(AiOutlineTag)
 
 const menu = [
   { name: 'Home', link: '/home', icon: <HomeIcon /> },
   { name: 'Users', link: '/users', icon: <UsersIcon /> },
+  { name: 'Categories', link: '/categories', icon: <TagIcon /> },
 ]
 
 export default ({ children }) => {

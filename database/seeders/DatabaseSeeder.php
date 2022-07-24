@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         if (env('APP_DEBUG')) {
             \App\Models\User::factory(10)->create();
+            \App\Models\Category::factory(30)->create();
         }
 
         // \App\Models\User::factory()->create([
