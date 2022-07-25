@@ -3,18 +3,20 @@ import { Link, usePage } from "@inertiajs/inertia-react"
 import AuthProfile from "./AuthProfile"
 import Navbar from "./Navbar"
 import { AiOutlineHome, AiOutlineTag } from 'react-icons/ai'
-import { FiUsers, FiShoppingCart } from 'react-icons/fi'
+import { FiUsers, FiShoppingCart, FiUserCheck } from 'react-icons/fi'
 
 const HomeIcon = chakra(AiOutlineHome)
 const UsersIcon = chakra(FiUsers)
 const TagIcon = chakra(AiOutlineTag)
 const ProductIcon = chakra(FiShoppingCart)
+const CustomerIcon = chakra(FiUserCheck)
 
 const menu = [
   { name: 'Home', link: '/home', icon: <HomeIcon /> },
   { name: 'Users', link: '/users', icon: <UsersIcon /> },
   { name: 'Categories', link: '/categories', icon: <TagIcon /> },
   { name: 'Products', link: '/products', icon: <ProductIcon /> },
+  { name: 'Customers', link: '/customers', icon: <CustomerIcon /> },
 ]
 
 export default ({ children }) => {

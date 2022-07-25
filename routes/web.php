@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -55,4 +56,14 @@ Route::resource('products', ProductController::class)->names([
   'update' => 'Products/Update',
   'destroy' => 'Products/Destroy',
   'show' => 'Products/Show'
+]);
+
+Route::resource('customers', CustomerController::class)->names([
+  'index' => 'Customers/Index',
+  'create' => 'Customers/Create',
+  'store' => 'Customers/Store',
+  'edit' => 'Customers/Edit',
+  'update' => 'Customers/Update',
+  'destroy' => 'Customers/Destroy',
+  'show' => 'Customers/Show'
 ]);
