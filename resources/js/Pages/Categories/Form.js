@@ -37,7 +37,7 @@ export default ({ onSubmit, onChangeInput, processing, errors, data, readOnly })
                 />
               </InputGroup>
               <FormErrorMessage>
-                {errors?.name}
+                {errors?.title}
               </FormErrorMessage>
             </FormControl>
 
@@ -72,7 +72,7 @@ export default ({ onSubmit, onChangeInput, processing, errors, data, readOnly })
                 </Select>
               </InputGroup>
               <FormErrorMessage>
-                {errors?.password}
+                {errors?.parent_id}
               </FormErrorMessage>
             </FormControl>
 
