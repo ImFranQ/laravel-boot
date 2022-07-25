@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -44,4 +45,14 @@ Route::resource('categories', CategoryController::class)->names([
   'update' => 'Categories/Update',
   'destroy' => 'Categories/Destroy',
   'show' => 'Categories/Show'
+]);
+
+Route::resource('products', ProductController::class)->names([
+  'index' => 'Products/Index',
+  'create' => 'Products/Create',
+  'store' => 'Products/Store',
+  'edit' => 'Products/Edit',
+  'update' => 'Products/Update',
+  'destroy' => 'Products/Destroy',
+  'show' => 'Products/Show'
 ]);

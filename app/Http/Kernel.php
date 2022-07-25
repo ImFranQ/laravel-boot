@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
 
         'passwordHasher' => \App\Http\Middleware\PasswordHasher::class,
         'inputCleaner' => \App\Http\Middleware\InputCleaner::class,
+        'authToRequest' => \App\Http\Middleware\AuthToRequest::class,
     ];
 }
