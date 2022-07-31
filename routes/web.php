@@ -4,8 +4,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Services\ShoppingCart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -55,8 +57,12 @@ Route::resource('products', ProductController::class)->names([
   'edit' => 'Products/Edit',
   'update' => 'Products/Update',
   'destroy' => 'Products/Destroy',
-  'show' => 'Products/Show'
+  'show' => 'Products/Show',
 ]);
+
+Route::controller(ProductController::class)->prefix('product')->group(function () {
+  Route::get('/{product}', 'detail')->name('Products/Detail');
+});
 
 Route::resource('customers', CustomerController::class)->names([
   'index' => 'Customers/Index',
@@ -67,3 +73,21 @@ Route::resource('customers', CustomerController::class)->names([
   'destroy' => 'Customers/Destroy',
   'show' => 'Customers/Show'
 ]);
+
+Route::resource('shopping-cart', ShoppingCartController::class)->names([
+  // 'index' => 'ShoppingCart/Index',
+  // 'create' => 'ShoppingCart/Create',
+  // 'store' => 'ShoppingCart/Store',
+  // 'edit' => 'ShoppingCart/Edit',
+  // 'update' => 'ShoppingCart/Update',
+  // 'destroy' => 'ShoppingCart/Destroy',
+  // 'show' => 'ShoppingCart/Show'
+  'addProduct' => 'ShoppingCart',
+  'customerDetail' => 'ShoppingCart/Detail'
+]);
+
+Route::controller(ShoppingCartController::class)->prefix('cart')->group(function(){
+  Route::get('detail', 'customerDetail')->name('ShoppingCart/Detail');
+  Route::post('add/{product}', 'addProduct')->name('ShoppingCart/Add');
+  Route::delete('destroy/{product}', 'removeProduct')->name('ShoppingCart/Destroy');
+});

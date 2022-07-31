@@ -6,6 +6,7 @@ use App\Contracts\Resourceable;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
 use App\Models\Product;
+use App\Traits\HasRenderizableView;
 use App\Traits\IsDestroyable;
 use App\Traits\IsEditable;
 use App\Traits\IsIndexable;
@@ -14,7 +15,7 @@ use App\Traits\IsStorable;
 
 class ProductController extends Controller
 {
-    use IsIndexable, IsDestroyable, IsShowable;
+    use IsIndexable, IsDestroyable, IsShowable, HasRenderizableView;
     use IsEditable {
         update as protected updateResource;
     }
@@ -24,7 +25,7 @@ class ProductController extends Controller
 
     function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['detail']);
         $this->middleware('authToRequest', ['only' => ['store']]);
         $this->middleware('inputCleaner')->only(['update']);
     }
@@ -91,6 +92,12 @@ class ProductController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         return $this->updateResource($request, $id);
+    }
+
+    public function detail(Product $product){
+        return $this->renderView('Products/Detail', [
+            'product' => $product
+        ]);
     }
 
     public function afterStore($resoruce)
