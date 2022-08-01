@@ -42,7 +42,8 @@ class HandleInertiaRequests extends Middleware
             'appName' => env('APP_NAME'),
             'csrf' => csrf_token(),
             'auth' => Auth::user(),
-            'cart' => ShoppingCart::get()
+            'cart' => ShoppingCart::get(),
+            'alert' => session()->get('alert')
         ]);
     }
 }

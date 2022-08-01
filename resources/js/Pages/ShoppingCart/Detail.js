@@ -2,6 +2,7 @@ import { Text, Container, Box, Button } from '@chakra-ui/react'
 import { Link, useForm } from '@inertiajs/inertia-react'
 import Navbar from '../../libs/components/Navbar'
 import AuthProfile from '../../libs/components/AuthProfile'
+import AppLayout from '../../libs/components/AppLayout'
 
 export default ({ appName, csrf, cart }) => {
 
@@ -10,7 +11,7 @@ export default ({ appName, csrf, cart }) => {
   })
 
   return (
-    <>
+    <AppLayout>
       <Navbar
         appName={appName}
         end={<AuthProfile />}
@@ -40,6 +41,6 @@ export default ({ appName, csrf, cart }) => {
         ))}
 
       </Container>
-    </>
+    </AppLayout>
   )
 }
