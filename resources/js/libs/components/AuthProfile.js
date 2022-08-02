@@ -1,22 +1,20 @@
-import { Button, Stack, Text, Flex, chakra, Box } from "@chakra-ui/react"
+import { Button, Stack, Flex, chakra, Menu, MenuButton, Avatar, MenuList, MenuItem, MenuDivider, Text } from "@chakra-ui/react"
 import { Link, usePage, useForm } from "@inertiajs/inertia-react"
-import { AiOutlineLogout, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineLogout, AiOutlineUser, AiOutlineDashboard } from "react-icons/ai";
+import { FaStore } from "react-icons/fa";
 
 const LogoutIcon = chakra(AiOutlineLogout);
-const AccountIcon = chakra(AiOutlineUser);
+// const AccountIcon = chakra(AiOutlineUser);
+const StoreIcon = chakra(FaStore);
+const DashboardIcon = chakra(AiOutlineDashboard);
 
 export default () => {
 
-  const { auth:user, csrf } = usePage().props
+  const { auth:user, csrf, storeUrl, boardUrl } = usePage().props
 
   const { post } = useForm({
     _token: csrf
   })
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    post('/logout')
-  }
 
   return <>
     <Stack
@@ -35,6 +33,42 @@ export default () => {
       </>)}
       {user && (<>
         <Flex alignItems={'center'}>
+          <Menu >
+            <MenuButton
+              as={Button}
+              rounded={'full'}
+              variant={'link'}
+              cursor={'pointer'}
+              minW={0}
+            >
+              <Avatar size={'sm'} />
+            </MenuButton>
+            <MenuList>
+              <MenuItem
+                as={Link}
+                icon={<StoreIcon color={'gray.500'} fontSize={'18px'} />}
+                href={storeUrl}
+              >
+                <Text>Store</Text>
+              </MenuItem>
+              <MenuItem
+                as={Link}
+                icon={<DashboardIcon color={'gray.500'} fontSize={'18px'} />}
+                href={boardUrl}
+              >
+                <Text>Dashboard</Text>
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem
+                icon={<LogoutIcon fontSize={'18px'} color={'red.500'} /> }
+                onClick={() => post('/logout')}
+              >
+                <Text color={'red.500'}>Log Out</Text>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+        {/* <Flex alignItems={'center'}>
           <Flex as={Link} href="/home" lineHeight={'18px'}  alignItems={'center'} mr={2}>
             <AccountIcon fontSize={'24px'} mr={2} />
             <Flex flexDirection={'column'}>
@@ -44,11 +78,9 @@ export default () => {
           </Flex>
 
           <form onSubmit={handleSubmit}>
-            <Flex as={Button} justifyContent={'center'} type="submit" variant={'unstyled'} >
-              <LogoutIcon fontSize={'24px'} color={'red.500'} />
-            </Flex>
+            
           </form>
-        </Flex>
+        </Flex> */}
       </>)}
     </Stack>
   </>
