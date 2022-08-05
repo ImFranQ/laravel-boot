@@ -1,16 +1,38 @@
-import { Container, Box, Button, Grid, GridItem, Text, Flex } from '@chakra-ui/react'
+import { Container, Box, Button, Grid, GridItem, Text, Flex, useToast } from '@chakra-ui/react'
 import { useForm } from '@inertiajs/inertia-react'
 import Navbar from '../../libs/components/Navbar'
 import AuthProfile from '../../libs/components/AuthProfile'
 import AppLayout from '../../libs/components/AppLayout'
 import Counter from '../../libs/components/Counter'
+import { AlertLayout } from '../../libs/components/Alerts'
 
 export default ({ appName, csrf, product }) => {
+
+  const toast = useToast()
 
   const { post, setData } = useForm({
     count: '1',
     _token: csrf
   })
+
+  const addHandle = () => {
+    post(product.cart.addUrl, {
+      onSuccess: () => {
+        toast({
+          position: 'bottom-right',
+          containerStyle: {
+            minWidth: '400px'
+          },
+          render: () => (
+            <AlertLayout 
+              type={'success'} 
+              message={'Product added to cart successfully'} 
+              onClose={() => toast.closeAll()} />
+          ),
+        })
+      }
+    })
+  }
 
   return (
     <AppLayout>
@@ -34,7 +56,6 @@ export default ({ appName, csrf, product }) => {
           </GridItem>
 
           <GridItem area={'rigth'}>
-
             <Box
               key={product.id}
               borderColor={'gray.200'}
@@ -53,12 +74,11 @@ export default ({ appName, csrf, product }) => {
                 <Button
                   flex={{base: 1}}
                   colorScheme={'blue'}
-                  onClick={() => post(product.cart.addUrl)}
+                  onClick={() => addHandle()}
                 >
                   Add To Cart
                 </Button>
               </Flex>
-
             </Box>
           </GridItem>
         </Grid>
