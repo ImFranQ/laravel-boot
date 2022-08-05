@@ -17,11 +17,12 @@ class ShoppingCart {
         'price' => $product->price,
         'count' => $count ?? 1,
         'destroyUrl' => route('ShoppingCart/Destroy', $product),
+        'updateUrl' => route('ShoppingCart/Add', $product),
         'data' => $product
       ]);
 
     }else{
-      $exists->count += $count;
+      $exists->count = $count;
     }
     
     $this->calculateTotals();

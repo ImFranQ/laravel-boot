@@ -1,16 +1,26 @@
 import { Button, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaMinus, FaPlus } from "react-icons/fa"
 
-export default ({ onChange, ...other }) => {
+export default ({ onChange, value:initialValue, ...other }) => {
 
-  const [value, setValue] = useState(1)
+  const [value, setValue] = useState(initialValue ?? 1)
+
+  let timer;
 
   const valueHandler = (value) => {
-
     setValue(value ? parseInt(value) : 1)
-    onChange ? onChange(value) : null
   }
+  
+  useEffect(() => {
+    timer = setTimeout(() => {
+      onChange ? onChange(value) : null
+    }, 1000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [value])
 
   return (
     <InputGroup {...other}>

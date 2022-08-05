@@ -32,20 +32,12 @@ class ShoppingCartController extends Controller
     public function addProduct(Request $request, Product $product)
     {
         ShoppingCart::add($product, $request->count);
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'Product added successfully'
-        ]);
         return back();
     }
 
     public function removeProduct(Request $request, Product $product)
     {
         ShoppingCart::destroy($product->id);
-        session()->flash('alert', [
-            'type' => 'success',
-            'message' => 'Product removed successfully'
-        ]);
         return back();
     }
 }
