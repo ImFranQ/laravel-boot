@@ -25,7 +25,6 @@ class ShoppingCartController extends Controller
 
     public function customerDetail()
     {
-        // ShoppingCart::clear();
         return $this->renderView('ShoppingCart/Detail');
     }
 

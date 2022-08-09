@@ -3,6 +3,7 @@ import { useForm, usePage } from '@inertiajs/inertia-react'
 import Counter from '../../libs/components/Counter'
 import { FaTimes } from 'react-icons/fa'
 import { AlertLayout } from '../../libs/components/Alerts'
+import { useEffect } from 'react'
 
 export default ({ product }) => {
 
@@ -14,16 +15,14 @@ export default ({ product }) => {
     _token: csrf
   })
 
-  const { data, setData, post } = useForm({
+  const { data, setData, post, isDirty } = useForm({
     count: product.count,
     _token: csrf
   })
 
   const updateProduct = (product, count) => {
     if (count == data.count) return;
-
     setData('count', count)
-    post(product.updateUrl)
   }
 
   const destroyHandle = (product) => {
@@ -44,6 +43,10 @@ export default ({ product }) => {
       }
     })
   }
+
+  useEffect(() => {
+    if (isDirty) post(product.updateUrl)
+  }, [data])
 
   return (
     <Flex gap={4} align={'center'} mb={4} key={product.id}>

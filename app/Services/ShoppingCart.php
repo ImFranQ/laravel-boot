@@ -21,6 +21,8 @@ class ShoppingCart {
         'data' => $product
       ]);
 
+
+      session()->put('cart', $cart);
     }else{
       $exists->count = $count;
     }

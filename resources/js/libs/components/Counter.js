@@ -9,13 +9,13 @@ export default ({ onChange, value:initialValue, ...other }) => {
   let timer;
 
   const valueHandler = (value) => {
-    setValue(value ? parseInt(value) : 1)
+    setValue(value ? value : 1)
   }
   
   useEffect(() => {
     timer = setTimeout(() => {
       onChange ? onChange(value) : null
-    }, 1000)
+    }, 300)
 
     return () => {
       clearTimeout(timer)
@@ -25,7 +25,7 @@ export default ({ onChange, value:initialValue, ...other }) => {
   return (
     <InputGroup {...other}>
       <InputLeftElement>
-        <Button size={'sm'} ml={1} onClick={() => valueHandler(value -1)} >
+        <Button size={'sm'} ml={1} onClick={() => valueHandler(parseInt(value) -1)} >
           <FaMinus />
         </Button>
       </InputLeftElement>
@@ -33,11 +33,11 @@ export default ({ onChange, value:initialValue, ...other }) => {
       <Input 
         value={value} px={2} 
         textAlign={'center'} 
-        onChange={(e) => valueHandler(e.target.value)} 
+        onChange={(e) => valueHandler(parseInt(e.target.value))} 
       />
 
       <InputRightElement>
-        <Button size={'sm'} mr={1} onClick={() => valueHandler(value +1)}>
+        <Button size={'sm'} mr={1} onClick={() => valueHandler(parseInt(value) +1)}>
           <FaPlus />
         </Button>
       </InputRightElement>
