@@ -5,7 +5,7 @@ import { FaTimes } from 'react-icons/fa'
 import { AlertLayout } from '../../libs/components/Alerts'
 import { useEffect } from 'react'
 
-export default ({ product }) => {
+export default ({ product, readOnly }) => {
 
   const { csrf } = usePage().props
 
@@ -59,19 +59,27 @@ export default ({ product }) => {
       </Box>
 
       <Flex align={'center'} gap={2}>
-        <Counter
-          w={'120px'}
-          value={data.count}
-          onChange={(value) => updateProduct(product, value)}
-        />
+        {!readOnly  && (
+          <Counter
+            w={'120px'}
+            value={data.count}
+            onChange={(value) => updateProduct(product, value)}
+          />
+        )}
+
+        {readOnly && (
+          <Text>{data.count}</Text>
+        )}
         <Text> x ${product.price} </Text>
       </Flex>
-
-      <Box>
-        <Button onClick={() => destroyHandle(product)}>
-          <FaTimes />
-        </Button>
-      </Box>
+      
+      {!readOnly && (
+        <Box>
+          <Button onClick={() => destroyHandle(product)}>
+            <FaTimes />
+          </Button>
+        </Box>
+      )}
     </Flex>
   )
 }

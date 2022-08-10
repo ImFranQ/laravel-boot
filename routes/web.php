@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
@@ -90,4 +91,8 @@ Route::controller(ShoppingCartController::class)->prefix('cart')->group(function
   Route::get('detail', 'customerDetail')->name('ShoppingCart/Detail');
   Route::post('add/{product}', 'addProduct')->name('ShoppingCart/Add');
   Route::delete('destroy/{product}', 'removeProduct')->name('ShoppingCart/Destroy');
+});
+
+Route::controller(CheckoutController::class)->prefix('checkout')->group(function () {
+  Route::post('payment-method', 'paymentMethod')->name('Checkout/PaymentMethod');
 });

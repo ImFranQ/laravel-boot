@@ -25,7 +25,9 @@ class ShoppingCartController extends Controller
 
     public function customerDetail()
     {
-        return $this->renderView('ShoppingCart/Detail');
+        return $this->renderView('ShoppingCart/Detail', [
+            'paymentUrl' => route('Checkout/PaymentMethod')
+        ]);
     }
 
     public function addProduct(Request $request, Product $product)
