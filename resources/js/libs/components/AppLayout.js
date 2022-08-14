@@ -9,7 +9,7 @@ export default ({children}) => {
   const { dispatchAlert } = useAlert()
 
   useEffect(() => {
-    if (alert) dispatchAlert(alert.type, alert.message)
+    // if (alert) dispatchAlert(alert.type, alert.message)
   }, [alert])
 
   return (
