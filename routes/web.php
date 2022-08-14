@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
@@ -94,6 +95,10 @@ Route::resource('shopping-cart', ShoppingCartController::class)->names([
   'addProduct' => 'ShoppingCart',
   'customerDetail' => 'ShoppingCart/Detail'
 ]);
+
+Route::controller(SearchController::class)->prefix('search')->group(function(){
+  Route::get('/', 'index')->name('Search/Index');
+});
 
 Route::controller(ShoppingCartController::class)->prefix('cart')->group(function(){
   Route::get('detail', 'customerDetail')->name('ShoppingCart/Detail');

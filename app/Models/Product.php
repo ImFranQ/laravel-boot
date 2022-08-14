@@ -13,6 +13,15 @@ class Product extends Model
 
     protected $appends = ['cart', 'detailUrl'];
 
+    function generateSearchTerm()
+    {
+        $terms = app('App\Http\Controllers\SearchController')->encode($this->title);
+        SearchTerm::updateOrCreate(
+            ['product_id' => $this->id],
+            ['product_id' => $this->id, 'term' => $terms]
+        );
+    }
+
     public function getCartAttribute()
     {
         return (object)[

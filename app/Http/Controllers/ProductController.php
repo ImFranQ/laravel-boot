@@ -102,6 +102,8 @@ class ProductController extends Controller
 
     public function afterStore($resoruce)
     {
+        $resoruce->generateSearchTerm();
+
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Product stored successfully'
@@ -110,6 +112,8 @@ class ProductController extends Controller
 
     public function afterUpdate($resoruce, $request)
     {
+        $resoruce->generateSearchTerm();
+
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Product updated successfully'

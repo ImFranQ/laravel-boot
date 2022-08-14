@@ -46,7 +46,8 @@ class HandleInertiaRequests extends Middleware
             'alert' => session()->get('alert'),
             'cartUrl' => route('ShoppingCart/Detail'),
             'storeUrl' => route('welcome'),
-            'boardUrl' => route('home')
+            'boardUrl' => route('home'),
+            'searchUrl' => route('Search/Index')
         ]);
     }
 }
