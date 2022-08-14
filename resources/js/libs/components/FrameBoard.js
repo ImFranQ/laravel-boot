@@ -2,7 +2,7 @@ import { Box, Flex, List, ListItem, chakra } from "@chakra-ui/react"
 import { Link, usePage } from "@inertiajs/inertia-react"
 import AuthProfile from "./AuthProfile"
 import Navbar from "./Navbar"
-import { AiOutlineHome, AiOutlineTag } from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineTag, AiOutlineFile } from 'react-icons/ai'
 import { FiUsers, FiShoppingCart, FiUserCheck } from 'react-icons/fi'
 import AppLayout from "./AppLayout"
 
@@ -11,6 +11,7 @@ const UsersIcon = chakra(FiUsers)
 const TagIcon = chakra(AiOutlineTag)
 const ProductIcon = chakra(FiShoppingCart)
 const CustomerIcon = chakra(FiUserCheck)
+const FileIcon = chakra(AiOutlineFile)
 
 const menu = [
   { name: 'Home', link: '/home', icon: <HomeIcon /> },
@@ -18,6 +19,7 @@ const menu = [
   { name: 'Categories', link: '/categories', icon: <TagIcon /> },
   { name: 'Products', link: '/products', icon: <ProductIcon /> },
   { name: 'Customers', link: '/customers', icon: <CustomerIcon /> },
+  { name: 'Files', link: '/files', icon: <FileIcon /> },
 ]
 
 export default ({ children }) => {

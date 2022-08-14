@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShoppingCartController;
@@ -74,6 +75,13 @@ Route::resource('customers', CustomerController::class)->names([
   'destroy' => 'Customers/Destroy',
   'show' => 'Customers/Show'
 ]);
+
+Route::resource('files', FileController::class)->names([
+  'index' => 'Files/Index',
+  'store' => 'Files/Store',
+  'destroy' => 'Files/Destroy',
+]);
+
 
 Route::resource('shopping-cart', ShoppingCartController::class)->names([
   // 'index' => 'ShoppingCart/Index',
