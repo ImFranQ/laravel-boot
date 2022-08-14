@@ -6,7 +6,6 @@ use App\Contracts\Resourceable;
 use App\Models\SearchTerm;
 use App\Traits\IsIndexable;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 
 class SearchController extends Controller implements Resourceable
 {
@@ -39,8 +38,15 @@ class SearchController extends Controller implements Resourceable
             $products->orWhere('search_terms.term', 'like', "%$term%");
         });
 
+        $products = $products->paginate(20);
+
+        $products->getCollection()->transform(function ($product) {
+            $product->detailUrl = route('Products/Detail', $product->id);
+            return $product;
+        });
+
         return [
-            'products' => $products->paginate(20),
+            'products' => $products,
             'query' => $query
         ];
     }
