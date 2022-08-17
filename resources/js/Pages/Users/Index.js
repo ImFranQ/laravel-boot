@@ -42,7 +42,7 @@ export default ({ users, createUrl }) => {
           <Text fontSize='xl'>Users</Text>
           <Button 
             size={'sm'} 
-            colorScheme={'blue'} 
+            colorScheme={'primary'} 
             as={Link} 
             href={createUrl}
           >

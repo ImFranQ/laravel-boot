@@ -73,7 +73,7 @@ export default ({ appName, csrf, product }) => {
                 <Counter mr={2} maxW={'150px'} onChange={v => setData('count', v)} />
                 <Button
                   flex={{base: 1}}
-                  colorScheme={'blue'}
+                  colorScheme={'primary'}
                   onClick={() => addHandle()}
                 >
                   Add To Cart

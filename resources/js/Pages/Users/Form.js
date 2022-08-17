@@ -100,9 +100,9 @@ export default ({ onSubmit, onChangeInput, processing, errors, data, readOnly })
               </FormErrorMessage>
             </FormControl>
 
-            {!readOnly && !processing && <Button type="submit" colorScheme={'blue'}>Save</Button>}
+            {!readOnly && !processing && <Button type="submit" colorScheme={'primary'}>Save</Button>}
           </Stack>
-          {processing && <Spinner mt={4} color={'blue.500'} />}
+          {processing && <Spinner mt={4} color={'primary.500'} />}
         </Flex>
       </form>
     </Container>

@@ -1,7 +1,7 @@
-import { Box, Container, SimpleGrid, Text } from "@chakra-ui/react"
-import { Link } from '@inertiajs/inertia-react'
+import { Container, SimpleGrid } from "@chakra-ui/react"
 import AuthProfile from "../../libs/components/AuthProfile"
 import Navbar from "../../libs/components/Navbar"
+import ProductPreview from "../../libs/components/ProductPreview"
 
 export default ({ products, appName }) => {
   return (
@@ -12,21 +12,12 @@ export default ({ products, appName }) => {
       />
 
       <Container maxW='6xl' p={4} >
-        <SimpleGrid columns={3} gap={4}>
+        <SimpleGrid columns={5} gap={4}>
           {products?.data.map(product => (
-            <Box
+            <ProductPreview
               key={product.id}
-              bg={'gray.50'}
-              borderColor={'gray.200'}
-              borderWidth={1}
-              borderStyle={'solid'}
-              borderRadius={8}
-              p={4}
-            >
-              <Text as={Link} fontSize='xl' href={product.detailUrl}>
-                {product.title}
-              </Text>
-            </Box>
+              product={product}
+            />
           ))}
         </SimpleGrid>
       </Container>

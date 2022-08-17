@@ -135,9 +135,9 @@ export default ({ csrf, email, token, appName }) => {
                   </FormErrorMessage>
                 </FormControl>
 
-                {!processing && <Button type="submit" colorScheme={'blue'}>Set password</Button>}
+                {!processing && <Button type="submit" colorScheme={'primary'}>Set password</Button>}
               </Stack>
-              {processing && <Spinner mt={4} color={'blue.500'} />}
+              {processing && <Spinner mt={4} color={'primary.500'} />}
             </Flex>
           </form>
         </Box>

@@ -1,9 +1,11 @@
-import { Text, Container, Box, SimpleGrid } from '@chakra-ui/react'
+import { Box, Container, Flex, List, SimpleGrid, Text  } from '@chakra-ui/react'
 import Navbar from '../libs/components/Navbar'
-import { Link } from '@inertiajs/inertia-react'
 import AuthProfile from '../libs/components/AuthProfile'
+import ProductPreview from '../libs/components/ProductPreview'
+import { Carousel } from '../libs/components/Carousel'
+import ListItem from '../libs/components/ListItem'
 
-export default ({ appName, products }) => {
+export default ({ appName, products, categories }) => {
   return (
     <>
       <Navbar
@@ -12,21 +14,24 @@ export default ({ appName, products }) => {
       />
 
       <Container maxW='6xl' my={4}>
-        <SimpleGrid columns={3} gap={4}>
+        <Flex gap={4} mb={4}>
+          <Box w={'750px'} minW={'750px'}>
+            <Carousel />
+          </Box>
+          <Box flex={{ base: 1 }}>
+            <List borderWidth={1} borderRadius={8}>
+              {categories.map((category, index) => (
+                <ListItem 
+                  key={index}
+                  title={category.title}
+                />
+              ))}
+            </List>
+          </Box>
+        </Flex>
+        <SimpleGrid columns={5} gap={4}>
           {products?.data.map(product => (
-            <Box
-              key={product.id}
-              bg={'gray.50'}
-              borderColor={'gray.200'}
-              borderWidth={1}
-              borderStyle={'solid'}
-              borderRadius={8}
-              p={4}
-            >
-              <Text as={Link} fontSize='xl' href={product.detailUrl}>
-                {product.title}
-              </Text>
-            </Box>
+            <ProductPreview key={product.id} product={product} />
           ))}
         </SimpleGrid>
       </Container>

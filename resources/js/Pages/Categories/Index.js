@@ -42,7 +42,7 @@ export default ({ categories, createUrl }) => {
           <Text fontSize='xl'>Categories</Text>
           <Button
             size={'sm'}
-            colorScheme={'blue'}
+            colorScheme={'primary'}
             as={Link}
             href={createUrl}
           >

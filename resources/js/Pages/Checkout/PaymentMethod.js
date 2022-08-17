@@ -82,7 +82,7 @@ export default ({ appName, csrf, cart }) => {
               
               <Accordion defaultIndex={[accordionIndex]}>
                 <AccordionItem>
-                  <AccordionButton _expanded={{ bg: 'blue.500', color: 'white' }}>
+                  <AccordionButton _expanded={{ bg: 'primary.500', color: 'white' }}>
                     <Box flex={1} textAlign={'left'}>
                       <Text>Bank Transfer</Text>
                     </Box>
@@ -92,7 +92,7 @@ export default ({ appName, csrf, cart }) => {
                     <Button
                       type='submit'
                       w={'100%'}
-                      colorScheme={'blue'}
+                      colorScheme={'primary'}
                       mt={4}
                     >
                       Continue

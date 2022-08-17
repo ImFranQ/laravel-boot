@@ -133,15 +133,15 @@ export default ({ csrf, appName }) => {
                   </FormErrorMessage>
                 </FormControl>
 
-                {!processing && <Button type="submit" colorScheme={'blue'}>Sign Up</Button>}
+                {!processing && <Button type="submit" colorScheme={'primary'}>Sign Up</Button>}
               </Stack>
-              {processing && <Spinner mt={4} color={'blue.500'} />}
+              {processing && <Spinner mt={4} color={'primary.500'} />}
             </Flex>
           </form>
         </Box>
         <Box textAlign={'center'} mt={4}>
           <Text as={'span'} color={'gray'}>I have account. </Text>
-          <Text as={Link} href='/login' color='blue.500'>Sign In</Text>
+          <Text as={Link} href='/login' color='primary.500'>Sign In</Text>
         </Box>
       </Container>
     </>

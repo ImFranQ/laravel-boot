@@ -46,11 +46,11 @@ export default ({ children }) => {
                   px={4} py={2}
                   display={'block'}
                   borderRadius={8}
-                  bg={url.match(item.link) ? 'blue.500' : ''}
+                  bg={url.match(item.link) ? 'primary.500' : ''}
                   color={'gray'}
                   mb={2}
                   _hover={{
-                    bg: url.match(item.link) ? 'blue.600' : 'gray.100',
+                    bg: url.match(item.link) ? 'primary.600' : 'gray.100',
                     color: 'gray.700'
                   }}
                 >

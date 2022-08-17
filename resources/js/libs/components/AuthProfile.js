@@ -23,11 +23,11 @@ export default () => {
       direction={'row'}
     >
       {!user && (<>
-        <Button colorScheme={'blue'} variant='link' mr={4} as={Link} href={'/login'} >
+        <Button colorScheme={'primary'} variant='link' mr={4} as={Link} href={'/login'} >
           Sign In
         </Button>
 
-        <Button colorScheme={'blue'} as={Link} href={'/register'}>
+        <Button colorScheme={'primary'} as={Link} href={'/register'}>
           Sign Up
         </Button>
       </>)}
