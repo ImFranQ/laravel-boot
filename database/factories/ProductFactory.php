@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -25,5 +26,14 @@ class ProductFactory extends Factory
             'user_id' => User::get()->random(),
             'price' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 10, $max = 3000),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterMaking(function (Product $product) {
+            //
+        })->afterCreating(function (Product $product) {
+            $product->generateSearchTerm();
+        });
     }
 }
