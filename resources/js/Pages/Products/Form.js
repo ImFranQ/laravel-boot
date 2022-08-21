@@ -12,10 +12,13 @@ import {
   Select
 } from '@chakra-ui/react'
 import { usePage } from '@inertiajs/inertia-react'
+import { Editor } from '@tinymce/tinymce-react';
+import { useRef } from 'react';
 
 export default ({ onSubmit, onChangeInput, processing, errors, data, readOnly }) => {
 
   const { categories } = usePage().props
+  const editorRef = useRef(null);
 
   return (
     <Container maxW={'md'}>
@@ -40,6 +43,26 @@ export default ({ onSubmit, onChangeInput, processing, errors, data, readOnly })
                 {errors?.title}
               </FormErrorMessage>
             </FormControl>
+
+            <Editor
+              apiKey='gcmcmkaifo9ti0ejkvhucd8c9l42am9f17x4u7nxtw7s92w4'
+              onInit={(evt, editor) => editorRef.current = editor}
+              initialValue={data.description}
+              init={{
+                height: 500,
+                menubar: false,
+                plugins: [
+                  'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                  'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                  'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | ' +
+                  'bold italic forecolor | alignleft aligncenter ' +
+                  'alignright alignjustify | bullist numlist outdent indent | ' +
+                  'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+              }}
+            />
 
             <FormControl isInvalid={errors?.description}>
               <InputGroup>
