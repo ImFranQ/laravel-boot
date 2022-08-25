@@ -111,20 +111,20 @@ export default ({ csrf, appName }) => {
                 </FormControl>
 
                 <Box textAlign={'right'} mt={4}>
-                  <Text as={Link} href='/password/reset' color='blue.500'>Forgot password</Text>
+                  <Text as={Link} href='/password/reset' color='primary.500'>Forgot password</Text>
                 </Box>
 
-                {!processing && <Button type="submit" colorScheme={'blue'}>Sign In</Button>}
+                {!processing && <Button type="submit" colorScheme={'primary'}>Sign In</Button>}
 
                 
               </Stack>
-              {processing  && <Spinner mt={4} color={'blue.500'} />}
+              {processing  && <Spinner mt={4} color={'primary.500'} />}
             </Flex>
           </form>
         </Box>
         <Box textAlign={'center'} mt={4}>
           <Text as={'span'} color={'gray'}>Don't have account? </Text>
-          <Text as={Link} href='/register' color='blue.500'>Sign Up</Text>
+          <Text as={Link} href='/register' color='primary.500'>Sign Up</Text>
         </Box>
       </Container>
     </>

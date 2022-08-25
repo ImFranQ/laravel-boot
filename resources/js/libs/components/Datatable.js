@@ -44,7 +44,7 @@ export default ({ data, headers, options }) => {
             as={Link} 
             href={link.url}
             disabled={!link.url}
-            colorScheme={'blue'}
+            colorScheme={'primary'}
             variant={link.active ? 'solid' : 'outline'}
             mr={2}
           >

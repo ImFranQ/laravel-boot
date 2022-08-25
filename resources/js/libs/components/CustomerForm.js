@@ -115,7 +115,7 @@ export default () => {
           <Button
             type='submit'
             w={'100%'}
-            colorScheme={'blue'}
+            colorScheme={'primary'}
             mt={4}
           >
             Proceed to Checkout
@@ -125,7 +125,7 @@ export default () => {
           flexDirection="column"
           alignItems="center"
         >
-          {processing && <Spinner mt={4} color={'blue.500'} />}
+          {processing && <Spinner mt={4} color={'primary.500'} />}
         </Flex>
       </form>
     </>
