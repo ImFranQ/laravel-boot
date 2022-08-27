@@ -24,7 +24,8 @@ class FileController extends Controller
 
     function __construct()
     {
-        $this->middleware('auth');
+        if(!request()->expectsJson())
+            $this->middleware('auth');
     }
 
     public function getEloquentResource()
@@ -39,7 +40,8 @@ class FileController extends Controller
 
     public function getIndexResponse()
     {
-        $files = $this->getEloquentResource()::paginate(24);
+        $limit = request()->input('limit') ?? 24;
+        $files = $this->getEloquentResource()::paginate($limit);
 
         $files->getCollection()->transform(function ($product) {
             $product->actions = [

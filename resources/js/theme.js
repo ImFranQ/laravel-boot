@@ -31,7 +31,19 @@ export default extendTheme({
       700: '#f96f3c',
       800: '#f86533',
       900: '#f65224',
-    }
+    },
+    gray: {
+      50: '#fafafa',
+      100: '#f5f5f5',
+      200: '#eeeeee',
+      300: '#e0e0e0',
+      400: '#bdbdbd',
+      500: '#9e9e9e',
+      600: '#757575',
+      700: '#616161',
+      800: '#424242',
+      900: '#212121',
+    },
   },
   defaultProps: {
     colorScheme: 'primary',
@@ -42,5 +54,38 @@ export default extendTheme({
         bg: 'gray.50'
       }
     })
+  },
+  components: {
+    Input: {
+      variants: {
+        outline: {
+          field: {
+            bg: 'white',
+            borderWidth: 2
+          }
+        }
+      },
+      defautlProps: {
+        focusBorderColor: 'primary'
+      }
+    },
+    Textarea: {
+      variants: {
+        outline: {
+          bg: 'white',
+          borderWidth: 2,
+        }
+      },
+    },
+    Select: {
+      variants: {
+        outline: {
+          field: {
+            bg: 'white',
+            borderWidth: 2
+          }
+        }
+      },
+    }
   }
 })

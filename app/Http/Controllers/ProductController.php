@@ -72,7 +72,8 @@ class ProductController extends Controller
         return [
             'updateUrl' => route('Products/Update', $id),
             'categories' => $this->getEloquentResource()::get(),
-            'product' => $this->getEloquentResource()::find($id)
+            'product' => $this->getEloquentResource()::find($id),
+            'tets' => route('Api/Files/Index')
         ];;
     }
 

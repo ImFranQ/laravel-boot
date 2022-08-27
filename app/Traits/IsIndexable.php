@@ -18,6 +18,9 @@ trait IsIndexable
    */
   public function index()
   {
+    if(request()->expectsJson())
+      return response()->json($this->getIndexResponse());
+
     return $this->renderView(
       $this->getIndexViewName(),
       $this->getIndexResponse()

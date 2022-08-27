@@ -10,7 +10,7 @@ export default ({ appName, end }) => {
   
   return (
     <Box
-      minH={'60px'}
+      minH={16}
       py={{ base: 2 }}
       px={{ base: 4 }}
       borderBottomWidth={1}
@@ -18,7 +18,7 @@ export default ({ appName, end }) => {
       align={'center'}
     >
       <Container maxW={'6xl'}>
-        <Flex alignItems={'center'}>
+        <Flex alignItems={'center'} justifyContent={'center'}>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
             <Text fontFamily={'heading'} as={Link} href={'/'}>
               {appName ?? ''}

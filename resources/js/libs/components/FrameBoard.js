@@ -35,8 +35,13 @@ export default ({ children }) => {
           end={<AuthProfile />}
         />
         <Box flexGrow={1} as={Flex}>
-          <Box minW={'300px'} w={'300px'} borderRightColor={'gray.200'} borderRightWidth={'1px'}>
-
+          <Box 
+            minW={'300px'} 
+            w={'300px'} 
+            borderRightColor={'gray.200'} 
+            borderRightWidth={'1px'} 
+            bg={'white'}
+          >
             <List p={2}>
               {menu.map((item, key) => (
                 <ListItem
