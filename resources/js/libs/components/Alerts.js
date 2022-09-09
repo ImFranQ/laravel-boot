@@ -21,21 +21,3 @@ export const AlertLayout = ({type, message, onClose}) => {
     </Alert>
   )
 }
-
-export const useAlert = () => {
-  const dispatchAlert = (type, message) => {
-    const toast = useToast()
-
-    toast({
-      position: 'bottom-right',
-      containerStyle: {
-        minWidth: '400px'
-      },
-      render: () => (
-        <AlertLayout {...{ type, message }} onClose={() => toast.closeAll()} />
-      ),
-    })
-  }
-  
-  return { dispatchAlert }
-}
