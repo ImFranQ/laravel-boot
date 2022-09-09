@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Resourceable;
+use App\Models\Product;
 use App\Models\SearchTerm;
 use App\Traits\IsIndexable;
 use Illuminate\Support\Facades\DB;
@@ -42,6 +43,7 @@ class SearchController extends Controller implements Resourceable
 
         $products->getCollection()->transform(function ($product) {
             $product->detailUrl = route('Products/Detail', $product->id);
+            $product->files = Product::find($product->id)->files;
             return $product;
         });
 

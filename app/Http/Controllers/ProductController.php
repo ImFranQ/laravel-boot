@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Resourceable;
 use App\Http\Requests\Product\StoreRequest;
 use App\Http\Requests\Product\UpdateRequest;
+use App\Models\FileRelation;
 use App\Models\Product;
 use App\Traits\HasRenderizableView;
 use App\Traits\IsDestroyable;
@@ -101,9 +102,10 @@ class ProductController extends Controller
         ]);
     }
 
-    public function afterStore($resoruce)
+    public function afterStore($resource, $request)
     {
-        $resoruce->generateSearchTerm();
+        $this->saveFiles($request, $resource);
+        $resource->generateSearchTerm();
 
         session()->flash('alert', [
             'type' => 'success',
@@ -111,13 +113,36 @@ class ProductController extends Controller
         ]);
     }
 
-    public function afterUpdate($resoruce, $request)
+    public function afterUpdate($resource, $request)
     {
-        $resoruce->generateSearchTerm();
+        $this->saveFiles($request, $resource);
+        $resource->generateSearchTerm();
 
         session()->flash('alert', [
             'type' => 'success',
             'message' => 'Product updated successfully'
         ]);
+    }
+
+    private function saveFiles($request, $resource){
+        // Get only id's
+        $filesId = collect($request->input('files'))->map(fn ($file) => $file['id']);
+
+        // Delete files
+        FileRelation::where('relation_id', $resource->id)
+            ->whereNotIn('file_id', $filesId)
+            ->delete();
+
+        // Add new files
+        $filesId->each(function($id) use ($resource){
+            FileRelation::updateOrCreate([
+                'file_id' => $id,
+                'relation_id' => $resource->id
+            ],[
+                'file_id' => $id,
+                'relation_nane' => Product::class,
+                'relation_id' => $resource->id
+            ]);
+        });
     }
 }

@@ -11,7 +11,7 @@ class Product extends Model
 
     protected $fillable = ['description', 'title', 'category_id', 'user_id', 'price'];
 
-    protected $appends = ['cart', 'detailUrl'];
+    protected $appends = ['cart', 'detailUrl', 'files'];
 
     function generateSearchTerm()
     {
@@ -33,5 +33,16 @@ class Product extends Model
     public function getDetailUrlAttribute()
     {
         return route('Products/Detail', $this->id);
+    }
+
+    public function getFilesAttribute()
+    {
+        return $this->filesRelations->map(fn ($file) => $file->file);
+    }
+
+    public function filesRelations()
+    {
+        return $this->hasMany('App\Models\FileRelation', 'relation_id', 'id')
+            ->where('relation_nane', Product::class);
     }
 }

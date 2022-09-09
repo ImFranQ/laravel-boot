@@ -12,12 +12,11 @@ export default ({ csrf, updateUrl, product }) => {
     price: product.price,
     parent_id: product.parent_id,
     category_id: product.category_id,
-    files: [],
+    files: product.files ?? [],
     _token: csrf
   })
 
   const handleSubmit = () => {
-    console.log(data);
     patch(updateUrl)
   }
 

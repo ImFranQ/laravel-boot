@@ -28,6 +28,8 @@ class UpdateRequest extends FormRequest
             'price' => ['required', 'numeric'],
             'description' => ['nullable', 'max:1000'],
             'category_id' => ['required', 'exists:categories,id'],
+            'files' => ['nullable', 'array', 'min:1'],
+            'files.*.id' => ['exists:files,id'],
         ];
     }
 }
