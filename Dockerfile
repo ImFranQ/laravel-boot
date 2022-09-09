@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.1-fpm
 
 ENV GIT_EMAIL=""
 ENV GIT_NAME=""
@@ -21,7 +21,7 @@ RUN npm i -g yarn
 # PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath
 
-RUN git config --global user.name ${GIT_NAME} && \
-  git config --global user.email ${GIT_EMAIL}
+# RUN git config --global user.name ${GIT_NAME} \
+#   && git config --global user.email ${GIT_EMAIL}
 
 USER root
