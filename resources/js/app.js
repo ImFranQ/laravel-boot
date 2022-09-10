@@ -2,6 +2,8 @@ import React from 'react'
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/inertia-react'
 import { ChakraProvider } from '@chakra-ui/react'
+import { Provider as ReduxProvider } from 'react-redux'
+import store from './redux/store';
 import theme from './theme';
 
 createInertiaApp({
@@ -10,9 +12,11 @@ createInertiaApp({
     const root = createRoot(el);
 
     root.render(
-      <ChakraProvider theme={theme}>
-        <App {...props} />
-      </ChakraProvider>
+      <ReduxProvider store={store}>
+        <ChakraProvider theme={theme}>
+          <App {...props} />
+        </ChakraProvider>
+      </ReduxProvider>
     )
   },
 })
