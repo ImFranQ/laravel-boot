@@ -20,6 +20,7 @@
         "@emotion/styled": "^11.9.3",
         "@inertiajs/inertia": "^0.11.0",
         "@inertiajs/inertia-react": "^0.8.0",
+        "@inertiajs/progress": "^0.2.7",
         "@reduxjs/toolkit": "^1.8.5",
         "@tinymce/tinymce-react": "^4.2.0",
         "framer-motion": "^6.4.3",

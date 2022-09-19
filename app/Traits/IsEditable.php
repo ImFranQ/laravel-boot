@@ -37,11 +37,22 @@ trait IsEditable
    */
   public function update(Request $request, $id)
   {
+    $this->doUpdate($request, $id);
+    return redirect()->route($this->viewPrefixName() . '/' . $this->indexPageName);
+  }
+
+  /**
+   * Update a resource
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \App\Model
+   */
+  public function doUpdate(Request $request, int $id){
     $resoruce = $this->getEloquentResource()::find($id);
     $data = $request->only($resoruce->getFillable());
     $resoruce->update($data);
     $this->afterUpdate($resoruce, $request);
-    return redirect()->route($this->viewPrefixName() . '/' . $this->indexPageName);
+    return $resoruce;
   }
 
   /**

@@ -4,7 +4,9 @@ import { createInertiaApp } from '@inertiajs/inertia-react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Provider as ReduxProvider } from 'react-redux'
 import store from './redux/store';
-import theme from './theme';
+import theme, { primaryColor } from './theme';
+
+import { InertiaProgress } from "@inertiajs/progress";
 
 createInertiaApp({
   resolve: name => require(`./Pages/${name}`),
@@ -20,3 +22,8 @@ createInertiaApp({
     )
   },
 })
+
+InertiaProgress.init({    
+  color: primaryColor,
+  showSpinner: false,
+});

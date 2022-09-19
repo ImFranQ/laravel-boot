@@ -37,7 +37,7 @@ class Product extends Model
 
     public function getFilesAttribute()
     {
-        return $this->filesRelations->map(fn ($file) => $file->file);
+        return $this->filesRelations->map(fn ($relation) => $relation->file);
     }
 
     public function filesRelations()

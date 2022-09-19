@@ -1,4 +1,4 @@
-import { Box, Button, chakra, Container, Divider, Flex, FormControl, FormErrorMessage, FormLabel, GridItem, IconButton, Img, Input, InputGroup, Select, SimpleGrid, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import { Box, Button, chakra, Divider, Flex, FormControl, FormErrorMessage, FormLabel, GridItem, IconButton, Img, Input, InputGroup, Select, SimpleGrid, Stack, Text, useDisclosure } from "@chakra-ui/react"
 import { useEffect, useRef, useState } from "react";
 import { Editor } from '@tinymce/tinymce-react';
 import { BiImageAdd } from 'react-icons/bi'
@@ -164,7 +164,11 @@ export default ({data, errors, processing, setData, onSubmit}) => {
           </Stack>
         </Box>
 
-        <FileSelector {...{isOpen, onClose}} onSuccess={files => setData('files', files)} selected={data.files} />
+        <FileSelector {...{isOpen, onClose}} 
+          onSuccess={files => setData('files', files)} 
+          selected={data.files} 
+          multiple={true}
+        />
       </Flex>
     </Flex>
   )

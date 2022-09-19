@@ -1,10 +1,11 @@
-import { Box, Flex, List, ListItem, chakra } from "@chakra-ui/react"
+import { Box, Flex, List, ListItem, chakra, Button } from "@chakra-ui/react"
 import { Link, usePage } from "@inertiajs/inertia-react"
 import AuthProfile from "./AuthProfile"
 import Navbar from "./Navbar"
 import { AiOutlineHome, AiOutlineTag, AiOutlineFile } from 'react-icons/ai'
 import { FiUsers, FiShoppingCart, FiUserCheck } from 'react-icons/fi'
 import AppLayout from "./AppLayout"
+import { useState } from "react"
 
 const HomeIcon = chakra(AiOutlineHome)
 const UsersIcon = chakra(FiUsers)
@@ -20,12 +21,27 @@ const menu = [
   { name: 'Products', link: '/products', icon: <ProductIcon /> },
   { name: 'Customers', link: '/customers', icon: <CustomerIcon /> },
   { name: 'Files', link: '/files', icon: <FileIcon /> },
+  { 
+    name: 'Pages',
+    link: '/pages',
+    icon: <FileIcon />,
+    children: [
+      { name: 'Home', link: '/pages/home', icon: <FileIcon /> },
+      { name: 'Term of services', link: '/pages/term-of-services', icon: <FileIcon /> },
+    ]
+  }
 ]
 
 export default ({ children }) => {
-
-  const { props, url, alert } = usePage()
+  const { props, url } = usePage()
   const { appName } = props
+
+  const urlActive = url.split('/')[1]
+  const [menuActive, setMenuActive] = useState(
+    menu.findIndex(item => item.link.match(urlActive))
+  )
+
+  const [showExpandible, setShowExpandble] = useState(null)
 
   return (
     <AppLayout>
@@ -44,29 +60,53 @@ export default ({ children }) => {
           >
             <List p={2}>
               {menu.map((item, key) => (
-                <ListItem
-                  key={key}
-                  as={Link}
-                  href={item.link}
-                  px={4} py={2}
-                  display={'block'}
+                <Box
+                  bg={item.children && (menuActive == key || showExpandible == key) ? 'gray.100' : 'transparent'}
                   borderRadius={8}
-                  bg={url.match(item.link) ? 'primary.500' : ''}
-                  color={'gray'}
-                  mb={2}
-                  _hover={{
-                    bg: url.match(item.link) ? 'primary.600' : 'gray.100',
-                    color: 'gray.700'
-                  }}
                 >
-                  <Flex 
-                    alignItems={'center'} 
-                    color={url.match(item.link) ? 'white' : null}
+                  <ListItem
+                    key={key}
+                    as={ item.children ? Box : Link}
+                    href={item.link}
+                    px={4} py={2} mb={2}
+                    display={'block'}
+                    borderRadius={8}
+                    onClick={() => item.children ? setShowExpandble(showExpandible == key ? null : key) : null}
+                    w={'100%'} cursor={'pointer'}
+                    bg={menuActive == key || showExpandible == key ? 'primary.500' : ''} color={'gray'}
+                    _hover={{
+                      bg: menuActive == key || showExpandible == key ? 'primary.600' : 'gray.100',
+                      color: 'gray.700'
+                    }}
                   >
-                    {item.icon}
-                    <Box ml={4}>{item.name}</Box>
-                  </Flex>
-                </ListItem>
+                    <Flex 
+                      alignItems={'center'} 
+                      color={menuActive == key || showExpandible == key ? 'white' : null}
+                    >
+                      {item.icon}
+                      <Box ml={4}>{item.name}</Box>
+                    </Flex>
+                  </ListItem>
+                  {(menuActive == key || showExpandible == key) && item.children?.length && (
+                    <Box p={2}>
+                      {item.children.map((child, key) => (
+                        <ListItem
+                          key={key}
+                          as={Link} href={item.children?.length ?  child.link : ''}
+                          px={4} py={2} mb={2}
+                          display={'block'}
+                          borderRadius={8}
+                          bg={child.link.match(url) ? 'gray.200' : ''} color={'gray'}
+                          _hover={{ bg: 'gray.300' }}
+                        >
+                          <Flex alignItems={'center'} >
+                            <Box>{child.name}</Box>
+                          </Flex>
+                        </ListItem>
+                      ))}
+                    </Box>
+                  )}
+                </Box>
               ))}
             </List>
 

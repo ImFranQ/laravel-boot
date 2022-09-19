@@ -27,21 +27,32 @@ trait IsStorable
   }
 
   /**
-   * Store a newly created resource in storage.
+   * Store a newly created resource in storage and redirect.
    *
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
   public function store(Request $request)
   {
+    $this->doStore($request);
+    return redirect()->route($this->viewPrefixName() . '/'. $this->indexPageName);
+  }
+
+  /**
+   * Save a new resource
+   * @param  \Illuminate\Http\Request  $request
+   * @return \App\Model
+   */
+  public function doStore(Request $request){
     $resoruce = app($this->getEloquentResource());
     $data = $request->only($resoruce->getFillable());
     foreach ($data as $key => $value) {
       $resoruce->$key = $value;
     }
     $resoruce->save();
+
     $this->afterStore($resoruce, $request);
-    return redirect()->route($this->viewPrefixName() . '/'. $this->indexPageName);
+    return $resoruce;
   }
 
   /**

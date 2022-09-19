@@ -50,7 +50,7 @@ const FileItem = ({file, isSelect, onSelect, onRemove}) => {
 
 }
 
-export default ({isOpen, onClose, onSuccess, selected:initialState}) => {
+export default ({isOpen, onClose, onSuccess, selected:initialState, multiple}) => {
   const {files, loadFiles} = useFile()
   const cancelRef = useRef()
   const [selected, setSelected] = useState(initialState ?? []);
@@ -71,7 +71,9 @@ export default ({isOpen, onClose, onSuccess, selected:initialState}) => {
 
   // add item to selected
   const addItem = (item) => {
-    setSelected([...selected, item])
+    multiple 
+      ? setSelected([...selected, item])  
+      : setSelected([item])
   }
 
   return (

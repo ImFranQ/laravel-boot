@@ -1,13 +1,16 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\TermOfServiceConroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Services\ShoppingCart;
@@ -29,7 +32,7 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Auth::routes();
 
-Route::controller(HomeController::class)->group(function(){
+Route::controller(DashboardController::class)->group(function(){
   Route::get('home', 'index')->name('home');
 });
 
@@ -85,13 +88,6 @@ Route::resource('files', FileController::class)->names([
 
 
 Route::resource('shopping-cart', ShoppingCartController::class)->names([
-  // 'index' => 'ShoppingCart/Index',
-  // 'create' => 'ShoppingCart/Create',
-  // 'store' => 'ShoppingCart/Store',
-  // 'edit' => 'ShoppingCart/Edit',
-  // 'update' => 'ShoppingCart/Update',
-  // 'destroy' => 'ShoppingCart/Destroy',
-  // 'show' => 'ShoppingCart/Show'
   'addProduct' => 'ShoppingCart',
   'customerDetail' => 'ShoppingCart/Detail'
 ]);
@@ -108,4 +104,15 @@ Route::controller(ShoppingCartController::class)->prefix('cart')->group(function
 
 Route::controller(CheckoutController::class)->prefix('checkout')->group(function () {
   Route::post('payment-method', 'paymentMethod')->name('Checkout/PaymentMethod');
+});
+
+Route::prefix('pages')->group(function () {
+  Route::get('home', [HomeController::class, 'edit'])->name('Pages/Home/Edit');
+  
+  Route::resource('home/carousel', CarouselController::class)->names([
+    'store' => 'Carousel/Store',
+    'update' => 'Carousel/Update',
+  ]);
+  
+  Route::get('term-of-services', [TermOfServiceConroller::class, 'edit'])->name('Pages/TermOfService/Edit');
 });
