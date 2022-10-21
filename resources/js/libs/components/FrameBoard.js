@@ -2,8 +2,8 @@ import { Box, Flex, List, ListItem, chakra, Button } from "@chakra-ui/react"
 import { Link, usePage } from "@inertiajs/inertia-react"
 import AuthProfile from "./AuthProfile"
 import Navbar from "./Navbar"
-import { AiOutlineHome, AiOutlineTag, AiOutlineFile } from 'react-icons/ai'
-import { FiUsers, FiShoppingCart, FiUserCheck } from 'react-icons/fi'
+import { AiOutlineHome, AiOutlineTag, AiOutlineFile, AiOutlineSetting } from 'react-icons/ai'
+import { FiUsers, FiShoppingCart, FiUserCheck, FiNavigation } from 'react-icons/fi'
 import AppLayout from "./AppLayout"
 import { useState } from "react"
 
@@ -13,6 +13,8 @@ const TagIcon = chakra(AiOutlineTag)
 const ProductIcon = chakra(FiShoppingCart)
 const CustomerIcon = chakra(FiUserCheck)
 const FileIcon = chakra(AiOutlineFile)
+const SettingIcon = chakra(AiOutlineSetting)
+const NavigationIcon = chakra(FiNavigation)
 
 const menu = [
   { name: 'Home', link: '/home', icon: <HomeIcon /> },
@@ -24,12 +26,13 @@ const menu = [
   { 
     name: 'Pages',
     link: '/pages',
-    icon: <FileIcon />,
+    icon: <NavigationIcon />,
     children: [
-      { name: 'Home', link: '/pages/home', icon: <FileIcon /> },
-      { name: 'Term of services', link: '/pages/term-of-services', icon: <FileIcon /> },
+      { name: 'Home', link: '/pages/home' },
+      { name: 'Term of services', link: '/pages/term-of-services' },
     ]
-  }
+  },
+  { name: 'Settings', link: '/settings', icon: <SettingIcon /> },
 ]
 
 export default ({ children }) => {

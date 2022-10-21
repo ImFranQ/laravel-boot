@@ -9,6 +9,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\TermOfServiceConroller;
 use App\Http\Controllers\UserController;
@@ -115,4 +116,9 @@ Route::prefix('pages')->group(function () {
   ]);
   
   Route::get('term-of-services', [TermOfServiceConroller::class, 'edit'])->name('Pages/TermOfService/Edit');
+});
+
+Route::controller(SettingsController::class)->prefix('settings')->group(function () {
+  Route::get('/', 'edit')->name('Settings/Edit');
+  Route::patch('/', 'update')->name('Settings/Update');
 });
