@@ -66,9 +66,9 @@ export default ({ children }) => {
                 <Box
                   bg={item.children && (menuActive == key || showExpandible == key) ? 'gray.100' : 'transparent'}
                   borderRadius={8}
+                  key={key}
                 >
                   <ListItem
-                    key={key}
                     as={ item.children ? Box : Link}
                     href={item.link}
                     px={4} py={2} mb={2}

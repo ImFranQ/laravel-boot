@@ -116,6 +116,7 @@ Route::prefix('pages')->group(function () {
   ]);
   
   Route::get('term-of-services', [TermOfServiceConroller::class, 'edit'])->name('Pages/TermOfService/Edit');
+  Route::post('term-of-services', [TermOfServiceConroller::class, 'update'])->name('Pages/TermOfService/Update');
 });
 
 Route::controller(SettingsController::class)->prefix('settings')->group(function () {
