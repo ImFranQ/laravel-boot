@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Illuminate\Support\Facades\Auth;
 use App\Facades\ShoppingCartFacade as ShoppingCart;
+use App\Models\Option;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -47,7 +48,9 @@ class HandleInertiaRequests extends Middleware
             'cartUrl' => route('ShoppingCart/Detail'),
             'storeUrl' => route('welcome'),
             'boardUrl' => route('home'),
-            'searchUrl' => route('Search/Index')
+            'searchUrl' => route('Search/Index'),
+            'defaultTitle' => Option::get('title', env('APP_NAME')),
+            'defaultDescription' => Option::get('description', 'A Laravel powered store'),
         ]);
     }
 }
