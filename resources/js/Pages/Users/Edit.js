@@ -1,4 +1,3 @@
-import { Text, Container, Flex } from '@chakra-ui/react'
 import { useForm } from '@inertiajs/inertia-react'
 import FrameBoard from '../../libs/components/FrameBoard'
 import Form from './Form'

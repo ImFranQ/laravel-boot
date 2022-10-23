@@ -1,4 +1,18 @@
-import { Box, Flex, FormControl, FormErrorMessage, Textarea, Input, InputGroup, Text, useDisclosure, Img, chakra, Button, Heading } from "@chakra-ui/react"
+import { 
+  Box,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  Textarea,
+  Input,
+  InputGroup,
+  Text,
+  useDisclosure,
+  Img,
+  chakra,
+  Button,
+  Heading 
+} from "@chakra-ui/react"
 import { useForm } from "@inertiajs/inertia-react"
 import { BiImageAdd } from 'react-icons/bi'
 import FileSelector from "../../libs/components/FileSelector"
