@@ -31,38 +31,32 @@ const userActions = (user) => {
 
 export default ({ users, createUrl }) => {
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex 
-          pb={2} mb={2} 
-          borderBottomWidth={'1px'} 
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
+    <FrameBoard
+      pageTitle={'Users'}
+      pageTitleEnd={
+        <Button 
+          size={'sm'} 
+          colorScheme={'primary'} 
+          as={Link} 
+          href={createUrl}
         >
-          <Text fontSize='xl'>Users</Text>
-          <Button 
-            size={'sm'} 
-            colorScheme={'primary'} 
-            as={Link} 
-            href={createUrl}
-          >
-            Create new
-          </Button>
-        </Flex>
-        <Datatable 
-          data={users} 
-          headers={{
-            name: 'Name', 
-            email: 'Email', 
-            actions: { title: '', render: userActions }
-          }}
-          options={{
-            actions: {
-              props: { w: '170px' }
-            }
-          }}
-        />
-      </Container>
+          Create new
+        </Button>
+      }
+    >
+      <Datatable 
+        data={users} 
+        headers={{
+          name: 'Name', 
+          email: 'Email', 
+          actions: { title: '', render: userActions }
+        }}
+        options={{
+          actions: {
+            props: { w: '170px' }
+          }
+        }}
+      />
     </FrameBoard>
   )
 }

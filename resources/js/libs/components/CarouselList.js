@@ -155,9 +155,6 @@ export default ({...other}) => {
 
   return (
     <Box 
-      bg={'white'} p={4}
-      borderRadius={8}
-      borderWidth={1}
       {...other}
     >
       <Text fontSize={'xl'}>Top Carousel</Text>

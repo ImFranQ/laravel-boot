@@ -1,4 +1,4 @@
-import { Box, Flex, List, ListItem, chakra, Button } from "@chakra-ui/react"
+import { Box, Flex, List, ListItem, chakra, Img, Center, Text, Divider, Container } from "@chakra-ui/react"
 import { Link, usePage } from "@inertiajs/inertia-react"
 import AuthProfile from "./AuthProfile"
 import Navbar from "./Navbar"
@@ -35,9 +35,9 @@ const menu = [
   { name: 'Settings', link: '/settings', icon: <SettingIcon /> },
 ]
 
-export default ({ children }) => {
+export default ({ children, footer, pageTitle, pageTitleEnd }) => {
   const { props, url } = usePage()
-  const { appName } = props
+  const { appName, brandImage, urlSite } = props
 
   const urlActive = url.split('/')[1]
   const [menuActive, setMenuActive] = useState(
@@ -49,10 +49,6 @@ export default ({ children }) => {
   return (
     <AppLayout>
       <Flex flexDirection={'column'} minH={'100vh'}>
-        <Navbar
-          appName={appName}
-          end={<AuthProfile />}
-        />
         <Box flexGrow={1} as={Flex}>
           <Box 
             minW={'300px'} 
@@ -61,6 +57,14 @@ export default ({ children }) => {
             borderRightWidth={'1px'} 
             bg={'white'}
           >
+            <Center p={4}>
+              <Link href={urlSite}>
+                <Img src={brandImage} alt={appName} w={'150px'} />
+              </Link>
+            </Center>
+
+            <Divider mb={4} />
+
             <List p={2}>
               {menu.map((item, key) => (
                 <Box
@@ -115,7 +119,44 @@ export default ({ children }) => {
 
           </Box>
           <Box flexGrow={1}>
-            {children}
+            <Flex
+              minH={16}
+              py={{ base: 2 }}
+              px={{ base: 4 }}
+              borderBottomWidth={1}
+              bg={'white'}
+              align={'center'}
+            >
+              <Navbar
+                appName={appName}
+                end={<AuthProfile />}
+              />
+            </Flex>
+            <Container maxW={'6xl'} p={4}>
+              {(pageTitle || pageTitleEnd) && (
+                <Flex 
+                  pb={2} mb={4} 
+                  borderBottomWidth={'1px'} 
+                  borderBottomColor={'gray.200'}
+                  justifyContent={'space-between'}
+                >
+                  <Text fontSize='xl'>{ pageTitle }</Text>
+                  <Box>{ pageTitleEnd }</Box>
+                </Flex>
+              )}
+
+              <Box bg={'white'} p={4} mb={4} borderWidth={'1px'} borderRadius={8}>
+                {children}
+              </Box>
+              
+              {footer && (
+                <>
+                  <Divider mb={4} />
+                  {footer}
+                </>
+              )}
+
+            </Container>
           </Box>
         </Box>
       </Flex>

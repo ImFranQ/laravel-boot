@@ -5,23 +5,13 @@ import Form from './Form'
 export default ({ user }) => {
 
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex
-          pb={2} mb={4}
-          borderBottomWidth={'1px'}
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
-        >
-          <Text fontSize='xl'>User detail</Text>
-        </Flex>
-
-        <Form
-          data={user}
-          readOnly
-        />
-
-      </Container>
+    <FrameBoard
+      pageTitle={'User details'}
+    >
+      <Form
+        data={user}
+        readOnly
+      />
     </FrameBoard>
   )
 }

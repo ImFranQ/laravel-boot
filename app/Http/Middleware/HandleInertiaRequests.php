@@ -51,6 +51,8 @@ class HandleInertiaRequests extends Middleware
             'searchUrl' => route('Search/Index'),
             'defaultTitle' => Option::get('title', env('APP_NAME')),
             'defaultDescription' => Option::get('description', 'A Laravel powered store'),
+            'urlSite' => Option::get('url', env('APP_URL')),
+            'brandImage' => Option::get('brand_image', ''),  
         ]);
     }
 }

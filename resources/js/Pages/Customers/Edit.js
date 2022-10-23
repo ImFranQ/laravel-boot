@@ -24,26 +24,16 @@ export default ({ csrf, updateUrl, customer }) => {
   }
 
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex
-          pb={2} mb={4}
-          borderBottomWidth={'1px'}
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
-        >
-          <Text fontSize='xl'>Update customer</Text>
-        </Flex>
-
-        <Form
-          onSubmit={handleSubmit}
-          onChangeInput={handleInput}
-          processing={processing}
-          errors={errors}
-          data={data}
-        />
-
-      </Container>
+    <FrameBoard
+      pageTitle={'Edit customer'}
+    >
+      <Form
+        onSubmit={handleSubmit}
+        onChangeInput={handleInput}
+        processing={processing}
+        errors={errors}
+        data={data}
+      />
     </FrameBoard>
   )
 }

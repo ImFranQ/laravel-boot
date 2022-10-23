@@ -31,37 +31,31 @@ const userActions = (category) => {
 
 export default ({ categories, createUrl }) => {
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex
-          pb={2} mb={2}
-          borderBottomWidth={'1px'}
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
+    <FrameBoard
+      pageTitle={'Categories'}
+      pageTitleEnd={
+        <Button
+          size={'sm'}
+          colorScheme={'primary'}
+          as={Link}
+          href={createUrl}
         >
-          <Text fontSize='xl'>Categories</Text>
-          <Button
-            size={'sm'}
-            colorScheme={'primary'}
-            as={Link}
-            href={createUrl}
-          >
-            Create new
-          </Button>
-        </Flex>
-        <Datatable
-          data={categories}
-          headers={{
-            title: 'Title',
-            actions: { title: '', render: userActions }
-          }}
-          options={{
-            actions: {
-              props: { w: '170px' }
-            }
-          }}
-        />
-      </Container>
+          Create new
+        </Button>
+      }
+    >
+      <Datatable
+        data={categories}
+        headers={{
+          title: 'Title',
+          actions: { title: '', render: userActions }
+        }}
+        options={{
+          actions: {
+            props: { w: '170px' }
+          }
+        }}
+      />
     </FrameBoard>
   )
 }

@@ -23,26 +23,16 @@ export default ({ csrf, updateUrl, category }) => {
   }
 
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex
-          pb={2} mb={4}
-          borderBottomWidth={'1px'}
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
-        >
-          <Text fontSize='xl'>Update category</Text>
-        </Flex>
-
-        <Form
-          onSubmit={handleSubmit}
-          onChangeInput={handleInput}
-          processing={processing}
-          errors={errors}
-          data={data}
-        />
-
-      </Container>
+    <FrameBoard
+      pageTitle={'Edit category'}
+    >
+      <Form
+        onSubmit={handleSubmit}
+        onChangeInput={handleInput}
+        processing={processing}
+        errors={errors}
+        data={data}
+      />
     </FrameBoard>
   )
 }

@@ -24,26 +24,16 @@ export default ({ csrf, storeUrl }) => {
   }
 
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex
-          pb={2} mb={4}
-          borderBottomWidth={'1px'}
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
-        >
-          <Text fontSize='xl'>New customer</Text>
-        </Flex>
-
-        <Form
-          onSubmit={handleSubmit}
-          onChangeInput={handleInput}
-          processing={processing}
-          errors={errors}
-          data={data}
-        />
-
-      </Container>
+    <FrameBoard
+      pageTitle={'Create new customer'}
+    >
+      <Form
+        onSubmit={handleSubmit}
+        onChangeInput={handleInput}
+        processing={processing}
+        errors={errors}
+        data={data}
+      />
     </FrameBoard>
   )
 }

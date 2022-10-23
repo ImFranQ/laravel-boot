@@ -1,4 +1,4 @@
-import { Text, Container, Flex, chakra, SimpleGrid, GridItem, Input, Spinner, Img, IconButton } from '@chakra-ui/react'
+import { Text, Flex, chakra, SimpleGrid, GridItem, Input, Spinner, Img, IconButton } from '@chakra-ui/react'
 import FrameBoard from '../../libs/components/FrameBoard'
 
 import { AiOutlinePlus } from 'react-icons/ai'
@@ -60,59 +60,49 @@ export default ({ storeUrl, files }) => {
   }, [data])
 
   return (
-    <FrameBoard>
-      <Container maxW='6xl' p={4} >
-        <Flex
-          pb={2} mb={2}
-          borderBottomWidth={'1px'}
-          borderBottomColor={'gray.200'}
-          justifyContent={'space-between'}
-        >
-          <Text fontSize='xl'>Files</Text>
-        </Flex>
-        
-        <SimpleGrid columns={4} gap={4}>
-          <GridItem>
-            <Flex 
-              w={'100%'} h={150} 
-              borderWidth={1} 
-              borderRadius={8} 
-              alignItems={'center'} 
-              justifyContent={'center'} 
-              flexDirection={'column'}
-              color={'gray'}
-              _hover={{cursor: 'pointer'}}
-              onClick={() => inputFile.current?.click()}
-            >
-              {!progress && (
-                <>
-                  <PlusIcon fontSize={48} />
-                  <Text>Add File</Text>
-                </>
-              )}
-              {progress && <Spinner />}
-              {errors.file && (
-                <>
-                  <Text as={'small'} mt={4} color={'red'}>{errors.file}</Text>
-                </>
-              )}
-              <Input 
-                type={'file'} 
-                ref={inputFile} 
-                display={'none'}
-                onChange={e => fileHandler(e)}
-              />
-            </Flex>
+    <FrameBoard
+      pageTitle={'Files'}
+    >
+      <SimpleGrid columns={4} gap={4}>
+        <GridItem>
+          <Flex 
+            w={'100%'} h={150} 
+            borderWidth={1} 
+            borderRadius={8} 
+            alignItems={'center'} 
+            justifyContent={'center'} 
+            flexDirection={'column'}
+            color={'gray'}
+            _hover={{cursor: 'pointer'}}
+            onClick={() => inputFile.current?.click()}
+          >
+            {!progress && (
+              <>
+                <PlusIcon fontSize={48} />
+                <Text>Add File</Text>
+              </>
+            )}
+            {progress && <Spinner />}
+            {errors.file && (
+              <>
+                <Text as={'small'} mt={4} color={'red'}>{errors.file}</Text>
+              </>
+            )}
+            <Input 
+              type={'file'} 
+              ref={inputFile} 
+              display={'none'}
+              onChange={e => fileHandler(e)}
+            />
+          </Flex>
+        </GridItem>
+
+        {files.data.map(file => (
+          <GridItem key={file.id}>
+            <FileItem file={file} />
           </GridItem>
-
-          {files.data.map(file => (
-            <GridItem key={file.id}>
-              <FileItem file={file} />
-            </GridItem>
-          ))}
-        </SimpleGrid>
-
-      </Container>
+        ))}
+      </SimpleGrid>
     </FrameBoard>
   )
 }
