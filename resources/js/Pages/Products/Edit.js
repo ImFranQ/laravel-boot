@@ -24,7 +24,9 @@ export default ({ csrf, updateUrl, product }) => {
   }
 
   return (
-    <FrameBoard>
+    <FrameBoard
+      fullScreen={true}
+    >
       <EditorLayout 
         data={data} 
         errors={errors}

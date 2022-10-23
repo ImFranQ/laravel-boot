@@ -23,7 +23,9 @@ export default ({ csrf, storeUrl }) => {
   }
 
   return (
-    <FrameBoard>
+    <FrameBoard
+      fullScreen={true}
+    >
       <EditorLayout
         data={data} 
         errors={errors}

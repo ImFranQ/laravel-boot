@@ -35,7 +35,7 @@ const menu = [
   { name: 'Settings', link: '/settings', icon: <SettingIcon /> },
 ]
 
-export default ({ children, footer, pageTitle, pageTitleEnd }) => {
+export default ({ children, footer, pageTitle, pageTitleEnd, fullScreen }) => {
   const { props, url } = usePage()
   const { appName, brandImage, urlSite } = props
 
@@ -132,11 +132,11 @@ export default ({ children, footer, pageTitle, pageTitleEnd }) => {
                 end={<AuthProfile />}
               />
             </Flex>
-            <Container maxW={'6xl'} p={4}>
+            <Container maxW={ fullScreen ? '' : '6xl'} p={fullScreen ? 0 : 4}>
               {(pageTitle || pageTitleEnd) && (
                 <Flex 
                   pb={2} mb={4} 
-                  borderBottomWidth={'1px'} 
+                  borderBottomWidth={fullScreen ? '':'1px'} 
                   borderBottomColor={'gray.200'}
                   justifyContent={'space-between'}
                 >
@@ -145,7 +145,7 @@ export default ({ children, footer, pageTitle, pageTitleEnd }) => {
                 </Flex>
               )}
 
-              <Box bg={'white'} p={4} mb={4} borderWidth={'1px'} borderRadius={8}>
+              <Box bg={'white'} p={fullScreen ? 0 : 4} mb={4} borderWidth={'1px'} borderRadius={fullScreen? 0 : 8}>
                 {children}
               </Box>
               
