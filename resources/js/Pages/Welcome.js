@@ -5,13 +5,14 @@ import ProductPreview from '../libs/components/ProductPreview'
 import { Carousel } from '../libs/components/Carousel'
 import ListItem from '../libs/components/ListItem'
 import PageHeader from '../libs/components/PageHeader'
+import AppNavbar from '../libs/components/AppNavbar'
 
 export default ({ appName, products, categories }) => {
   return (
     <>
       <PageHeader />
 
-      <Navbar
+      <AppNavbar
         appName={appName}
         end={<AuthProfile />}
       />
