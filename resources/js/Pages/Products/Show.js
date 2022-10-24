@@ -6,7 +6,7 @@ export default ({ product }) => {
 
   return (
     <FrameBoard>
-      <Container maxW='6xl' p={4} >
+      <Container maxW='7xl' p={4} >
         <Flex
           pb={2} mb={4}
           borderBottomWidth={'1px'}

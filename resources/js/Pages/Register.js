@@ -17,7 +17,6 @@ import {
 import { useForm, Link } from '@inertiajs/inertia-react'
 import { useState } from 'react';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaUser } from "react-icons/fa";
-import Navbar from '../libs/components/Navbar';
 
 const EnvelopeIcon = chakra(FaEnvelope);
 const LockIcon = chakra(FaLock);
@@ -48,7 +47,6 @@ export default ({ csrf, appName }) => {
 
   return (
     <>
-      <Navbar appName={appName} />
       <Container
         maxW='md'
         my={4}

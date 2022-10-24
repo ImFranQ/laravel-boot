@@ -1,4 +1,5 @@
 import { Box, Button, chakra, Divider, Flex, Img, Text } from "@chakra-ui/react"
+import { Link } from "@inertiajs/inertia-react"
 import { MdOutlineAddShoppingCart } from 'react-icons/md'
 
 const CartIcon = chakra(MdOutlineAddShoppingCart)
@@ -19,11 +20,13 @@ export default ({product}) => {
         mb={2}
         justifyContent={'center'}
       >
-        <Img
-          src={product.files[0]?.path ?? 'https://m.media-amazon.com/images/I/61kAqcLvUIS._AC_UY218_.jpg'}
-          maxW={'100%'}
-          maxH={'100%'}
-        />
+        <Link href={product.detailUrl}>
+          <Img
+            src={product.files[0]?.path ?? 'https://m.media-amazon.com/images/I/61kAqcLvUIS._AC_UY218_.jpg'}
+            maxW={'100%'}
+            maxH={'100%'}
+          />
+        </Link>
       </Flex>
       <Divider my={2} />
       <Flex justifyContent={'space-between'} alignItems={'center'}>

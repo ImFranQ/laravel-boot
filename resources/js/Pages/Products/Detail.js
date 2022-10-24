@@ -1,8 +1,8 @@
 import { Container, Box, Button, Grid, GridItem, Text, Flex, useToast } from '@chakra-ui/react'
 import { useForm } from '@inertiajs/inertia-react'
-import Navbar from '../../libs/components/Navbar'
-import AuthProfile from '../../libs/components/AuthProfile'
-import AppLayout from '../../libs/components/AppLayout'
+import AppTemplate from '../../libs/components/AppTemplate'
+// import AuthProfile from '../../libs/components/AuthProfile'
+// import AppLayout from '../../libs/components/AppLayout'
 import Counter from '../../libs/components/Counter'
 import { AlertLayout } from '../../libs/components/Alerts'
 
@@ -35,13 +35,8 @@ export default ({ appName, csrf, product }) => {
   }
 
   return (
-    <AppLayout>
-      <Navbar
-        appName={appName}
-        end={<AuthProfile />}
-      />
-
-      <Container maxW='6xl' my={4}>
+    <AppTemplate>
+      <Container maxW='7xl' my={4}>
         <Grid
           templateAreas={`"left rigth"`}
           gridTemplateRows={'1fr'}
@@ -94,6 +89,6 @@ export default ({ appName, csrf, product }) => {
           </Box>
         </Grid>
       </Container>
-    </AppLayout>
+    </AppTemplate>
   )
 }

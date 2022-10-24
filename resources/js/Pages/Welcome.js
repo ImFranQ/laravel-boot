@@ -1,44 +1,49 @@
-import { Box, Container, Flex, List, SimpleGrid, Text  } from '@chakra-ui/react'
-import Navbar from '../libs/components/Navbar'
-import AuthProfile from '../libs/components/AuthProfile'
+import { Avatar, Box, Center, Container, SimpleGrid, Text } from '@chakra-ui/react'
 import ProductPreview from '../libs/components/ProductPreview'
 import { Carousel } from '../libs/components/Carousel'
-import ListItem from '../libs/components/ListItem'
 import PageHeader from '../libs/components/PageHeader'
-import AppNavbar from '../libs/components/AppNavbar'
+import { Link } from '@inertiajs/inertia-react'
+import { DecoratedTitle } from '../libs/components/helpers'
+import AppTemplate from '../libs/components/AppTemplate'
 
 export default ({ appName, products, categories }) => {
   return (
-    <>
+    <AppTemplate>
       <PageHeader />
 
-      <AppNavbar
-        appName={appName}
-        end={<AuthProfile />}
-      />
+      <Container maxW='7xl' my={4}>
+        <Carousel />
+        <Box my={16}>
+          <DecoratedTitle mb={8}>Categories</DecoratedTitle>
 
-      <Container maxW='6xl' my={4}>
-        <Flex gap={4} mb={4}>
-          <Box w={'750px'} minW={'750px'}>
-            <Carousel />
-          </Box>
-          <Box flex={{ base: 1 }}>
-            <List borderWidth={1} borderRadius={8}>
-              {categories.map((category, index) => (
-                <ListItem 
-                  key={index}
-                  title={category.title}
-                />
-              ))}
-            </List>
-          </Box>
-        </Flex>
-        <SimpleGrid columns={5} gap={4}>
-          {products?.data.map(product => (
-            <ProductPreview key={product.id} product={product} />
-          ))}
-        </SimpleGrid>
+          <SimpleGrid columns={6} gap={8}>
+            {categories.map((category, index) => (
+              <Link href='#'>
+                <Center mb={4}>
+                  <Avatar name={category.title} size='xl'></Avatar>
+                </Center>
+                <Text 
+                  textAlign={'center'} 
+                  fontSize={'lg'} 
+                  textTransform={'uppercase'}
+                  color={'gray.500'}
+                >
+                  {category.title}
+                </Text>
+              </Link>
+            ))}
+          </SimpleGrid>
+        </Box>
+        
+        <Box my={16}>
+          <DecoratedTitle mb={8}>Recent Products</DecoratedTitle>
+          <SimpleGrid columns={5} gap={4}>
+            {products?.data.map(product => (
+              <ProductPreview key={product.id} product={product} />
+            ))}
+          </SimpleGrid>
+        </Box>
       </Container>
-    </>
+    </AppTemplate>
   )
 }

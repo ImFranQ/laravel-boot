@@ -10,7 +10,7 @@ class WelcomeController extends Controller
 {
     public function index(){
         return Inertia::render('Welcome', [
-            'categories' => Category::limit(10)->get(),
+            'categories' => Category::limit(12)->get(),
             'products' => Product::paginate(10)
         ]);
     }

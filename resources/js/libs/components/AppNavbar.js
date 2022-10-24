@@ -17,7 +17,7 @@ export default ({ appName, center, end }) => {
       bg={'white'}
       align={'center'}
     >
-      <Container maxW='6xl'>
+      <Container maxW='7xl'>
         <Flex alignItems={'center'} justifyContent={'space-between'} w={'100%'}>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
             <Text fontFamily={'heading'} as={Link} href={'/'}>

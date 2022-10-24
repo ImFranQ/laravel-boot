@@ -32,7 +32,7 @@ const userActions = (product) => {
 export default ({ products, createUrl }) => {
   return (
     <FrameBoard>
-      <Container maxW='6xl' p={4} >
+      <Container maxW='7xl' p={4} >
         <Flex
           pb={2} mb={2}
           borderBottomWidth={'1px'}

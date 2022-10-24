@@ -19,7 +19,7 @@ export default ({ appName, csrf, cart }) => {
         end={<AuthProfile />}
       />
 
-      <Container maxW='6xl' my={4}>
+      <Container maxW='7xl' my={4}>
         <Grid
           templateAreas={`"left rigth"`}
           gridTemplateRows={'1fr'}
