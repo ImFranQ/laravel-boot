@@ -14,8 +14,6 @@ const CancelIcon = chakra(FaTimes)
 
 const CarouselItem = ({data:initialState, onCancel, onSuccess}) => {
 
-  console.log(initialState);
-
   const { carousel , storeCarouselUrl } = usePage().props
   const [isEditable, setIsEditable] = useState(!initialState)
   const { isOpen, onOpen, onClose } = useDisclosure()
