@@ -11,11 +11,16 @@ class CarouselItem extends Model
 
     protected $fillable = ['title', 'description', 'link', 'link_text', 'is_active', 'order'];
 
-    protected $appends = ['files', 'updateUrl'];
+    protected $appends = ['files', 'updateUrl', 'destroyUrl'];
 
     public function getFilesAttribute()
     {
         return $this->filesRelations->map(fn ($relation) => $relation->file);
+    }
+    
+    public function getDestroyUrlAttribute()
+    {
+        return route('Carousel/Destroy', $this->id);
     }
 
     public function getUpdateUrlAttribute()
@@ -25,7 +30,7 @@ class CarouselItem extends Model
     
     public function filesRelations()
     {
-        return $this->hasMany('App\Models\FileRelation', 'relation_id', 'id')
+        return $this->hasMany(FileRelation::class, 'relation_id', 'id')
             ->where('relation_nane', CarouselItem::class);
     }
 

@@ -113,6 +113,7 @@ Route::prefix('pages')->group(function () {
   Route::resource('home/carousel', CarouselController::class)->names([
     'store' => 'Carousel/Store',
     'update' => 'Carousel/Update',
+    'destroy' => 'Carousel/Destroy',
   ]);
   
   Route::get('term-of-services', [TermOfServiceConroller::class, 'edit'])->name('Pages/TermOfService/Edit');

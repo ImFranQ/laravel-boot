@@ -15,7 +15,11 @@ trait IsDestroyable
    */
   public function destroy($id)
   {
-    $this->getEloquentResource()::destroy($id);
+    try{
+      $this->getEloquentResource()::destroy($id);
+    } catch (\Exception $e) {
+      return back()->withErrors('An error occurred while deleting the resource.');
+    }
     return back();
   }
 }

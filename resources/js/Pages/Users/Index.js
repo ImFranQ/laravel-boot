@@ -10,8 +10,11 @@ const ShowIcon = chakra(FiEye)
 
 const userActions = (user) => {
   const { csrf: _token } = usePage().props
-  const { processing, delete:destroy } = useForm({ _token })
-  
+  const { delete:destroy } = useForm({ _token })
+  const destroyHandler = () => {
+    destroy(user.actions.destroy)
+  }
+
   return (
     <Flex>
       <Button variant={'link'} size={'md'} as={Link} href={user.actions.show}>
@@ -20,11 +23,9 @@ const userActions = (user) => {
       <Button variant={'link'} size={'md'} as={Link} href={user.actions.edit}>
         <EditIcon />
       </Button>
-      <form onSubmit={() => destroy(user.actions.destroy)}>
-        <Button variant={'link'} size={'md'} type="submit" display={'flex'}>
-          <TrashIcon color={'red.500'} />
-        </Button>
-      </form>
+      <Button variant={'link'} size={'md'} display={'flex'} onClick={() => destroyHandler()}>
+        <TrashIcon color={'red.500'} />
+      </Button>
     </Flex>
   )
 }

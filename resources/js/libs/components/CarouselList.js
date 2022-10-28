@@ -14,6 +14,8 @@ const CancelIcon = chakra(FaTimes)
 
 const CarouselItem = ({data:initialState, onCancel, onSuccess}) => {
 
+  console.log(initialState);
+
   const { carousel , storeCarouselUrl } = usePage().props
   const [isEditable, setIsEditable] = useState(!initialState)
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -29,12 +31,18 @@ const CarouselItem = ({data:initialState, onCancel, onSuccess}) => {
     order: initialState?.order ?? carousel.length + 1
   })
 
+  const {delete:destroy} = useForm()
+
   const succesHandler = () => {
     if (!processing) {
       data.id
         ? patch(carousel.find((e) => e.id == data.id).updateUrl, { onSuccess: onSuccessHandler })
         : post(storeCarouselUrl, { onSuccess: onSuccessHandler }) 
     }
+  }
+
+  const destroyCarouselHandler = () => {
+    destroy(initialState.destroyUrl)
   }
 
   const onSuccessHandler = () => {
@@ -133,7 +141,7 @@ const CarouselItem = ({data:initialState, onCancel, onSuccess}) => {
               <PenIcon />
             </IconButton>
 
-            <IconButton>
+            <IconButton onClick={() => destroyCarouselHandler()}>
               <TrashIcon />
             </IconButton>
           </>
@@ -152,6 +160,8 @@ const CarouselItem = ({data:initialState, onCancel, onSuccess}) => {
 export default ({...other}) => {
   const { carousel } = usePage().props
   const [showNewItem, setShowNewItem] = useState(false)
+
+  console.log(carousel);
 
   return (
     <Box 

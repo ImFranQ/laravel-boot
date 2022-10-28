@@ -5,16 +5,18 @@ import {
   Text 
 } from "@chakra-ui/react"
 import { usePage } from "@inertiajs/inertia-react"
+import AppLayout from "./AppLayout"
 import AppNavbar from "./AppNavbar"
+import AuthProfile from "./AuthProfile"
 
 export default ({children}) => {
   const {appName} = usePage().props
   
   return (
-    <>
+    <AppLayout>
       <AppNavbar
         appName={appName}
-        // end={<AuthProfile />}
+        end={<AuthProfile />}
       />
 
       {children}
@@ -26,6 +28,6 @@ export default ({children}) => {
           </Center>
         </Container>
       </Box>
-    </>
+    </AppLayout>
   )
 }

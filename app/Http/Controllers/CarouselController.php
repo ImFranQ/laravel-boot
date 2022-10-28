@@ -8,6 +8,7 @@ use App\Models\CarouselItem;
 use App\Models\FileRelation;
 use App\Traits\IsEditable;
 use App\Traits\IsStorable;
+use Illuminate\Http\Request;
 
 class CarouselController extends Controller 
 {
@@ -59,4 +60,18 @@ class CarouselController extends Controller
             'relation_id' => $resource->id
         ]);
     }
+
+    public function destroy(Request $request, $id){
+        
+        FileRelation::where('relation_id', $id)->where('relation_nane', CarouselItem::class)->delete();
+        CarouselItem::destroy($id);
+
+        session()->flash('alert', [
+            'type' => 'success',
+            'message' => 'Carousel item deleted successfully'
+        ]);
+
+        return back();
+    }
+
 }
